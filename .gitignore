@@ -36,3 +36,4 @@ build/
 /mvnw.cmd
 /.idea/
 /.mvn/
+/src/main/resources/notes/~$ring-security-notes.docx
