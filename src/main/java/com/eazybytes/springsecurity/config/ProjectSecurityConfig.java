@@ -37,5 +37,9 @@ public class ProjectSecurityConfig {
        return new InMemoryUserDetailsManager(user,admin);
     }
 
+    @Bean
+    PasswordEncoder passwordEncoder(){
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
 
 }
