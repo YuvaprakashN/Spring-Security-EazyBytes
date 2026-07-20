@@ -31,15 +31,20 @@ public class ProjectSecurityConfig {
     }
 
     @Bean
-    UserDetailsService userDetailsService(){
-       UserDetails user = User.withUsername("user").password("{noop}password").build();
+    UserDetailsService userDetailsService() {
+        UserDetails user = User.withUsername("user").password("{noop}password").build();
         UserDetails admin = User.withUsername("admin").password("{bcrypt}$2a$12$Ztmo5PYyQQEC.ayGrsK4CeLEudgBejNUmgbETiKV1yf0sTdFmwCty").build();
-       return new InMemoryUserDetailsManager(user,admin);
+        return new InMemoryUserDetailsManager(user, admin);
     }
 
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
+    @Bean
+    CompromisedPasswordChecker compromisedPasswordChecker() {
+        return new HaveIBeenPwnedRestApiPasswordChecker();
     }
 
 }
